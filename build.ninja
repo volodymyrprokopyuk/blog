@@ -1,15 +1,16 @@
 rule md
-  command = marked -o $out $in
+  command = marked --output $out $in
   description = [ $out ]
 
 build site/0001-state-manipulation-vs-value-calculation-in-programming.html: $
    md posts/0001-state-manipulation-vs-value-calculation-in-programming.md
 
 rule pug
-  command = pug -o site $in
+  command = pug --out site --obj posts/0000-posts.js $in
   description = [ $out ]
 
-build site/index.html: pug templates/index.pug
+build site/index.html: pug templates/index.pug | templates/base.pug $
+  posts/0000-posts.js
 
 rule clean
   command = rm -rf site
