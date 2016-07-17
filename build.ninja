@@ -1,0 +1,21 @@
+rule md
+  command = marked -o $out $in
+  description = [ $out ]
+
+build site/0001-state-manipulation-vs-value-calculation-in-programming.html: $
+   md posts/0001-state-manipulation-vs-value-calculation-in-programming.md
+
+rule pug
+  command = pug -o site $in
+  description = [ $out ]
+
+build site/index.html: pug templates/index.pug
+
+rule clean
+  command = rm -rf site
+  description = [ rm -rf site ]
+
+build clean: clean
+
+#default site/0001-state-manipulation-vs-value-calculation-in-programming.html
+default site/index.html

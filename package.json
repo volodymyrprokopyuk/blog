@@ -1,0 +1,14 @@
+{
+  "name": "blog",
+  "version": "0.1.0",
+  "author": "Volodymyr Prokopyuk <volodymyrprokopyuk@gmail.com>",
+  "description": "Blog static site generator",
+  "homepage": "http://volodymyrprokopyuk.github.io/blog"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/volodymyrprokopyuk/blog.git"
+  }, "licence": "MIT",
+  "dependencies": {
+
+  }
+}
