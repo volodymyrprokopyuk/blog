@@ -1,3 +1,9 @@
+rule css
+  command = mkdir -p site/css && cp $in $out
+  description = [ $out ]
+
+build site/css/milligram.min.css: css node_modules/milligram/dist/milligram.min.css
+
 rule md
   command = marked --output $out $in
   description = [ $out ]
@@ -12,15 +18,17 @@ rule pug
 
 # build home
 build site/index.html: pug templates/index.pug $
-  | templates/base.pug templates/mixins.pug posts/posts-meta.js
+  | site/css/milligram.min.css templates/base.pug templates/mixins.pug $
+  posts/posts-meta.js
 
 # build categories
 build site/functional-programming.html: pug templates/functional-programming.pug $
-  | templates/base.pug templates/mixins.pug posts/posts-meta.js
+  | site/css/milligram.min.css templates/base.pug templates/mixins.pug $
+  posts/posts-meta.js
 
 # build posts
 build site/state-manipulation-vs-value-calculation-in-programming.html: $
-  pug templates/post.pug | templates/base.pug $
+  pug templates/post.pug | site/css/milligram.min.css templates/base.pug $
   html/0001-state-manipulation-vs-value-calculation-in-programming.html
 
 rule clean

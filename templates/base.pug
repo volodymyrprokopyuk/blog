@@ -7,18 +7,20 @@ html
     meta(name="description" content="Distributed systems, functional programming and software testing with Elixir and JavaScript")
     meta(name="keywords" content="distributed systems, functional programming, software testing, Elixir, JavaScript")
     title Volodymyr Prokopyuk's Blog
+    link(href="css/milligram.min.css" rel="stylesheet")
   body
-    header
-        h1: a(href="index.html").
-          Distributed systems, functional programming and software testing with
-          Elixir and JavaScript
-        p.
-          Become better Software Architect with deeper understanding of software
-          design principles and software quality techniques
-    nav
-      ul
-        li: a(href="functional-programming.html") Functional programming
-    main
-      block main
-    footer
-      p Disqus
+    .container
+      header
+          h1: a(href="index.html").
+            Distributed systems, functional programming and software testing with
+            Elixir and JavaScript
+          p.
+            Become better Software Architect with deeper understanding of software
+            design principles and software quality techniques
+      nav
+        ul
+          li: a(href="functional-programming.html") Functional programming
+      main
+        block main
+      footer
+        p Disqus

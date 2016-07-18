@@ -10,6 +10,7 @@
   }, "licence": "MIT",
   "dependencies": {
     "moment": "2.x",
-    "ramda": "0.x"
+    "ramda": "0.x",
+    "milligram": "1.x"
   }
 }
