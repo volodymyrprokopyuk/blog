@@ -2,21 +2,32 @@ rule md
   command = marked --output $out $in
   description = [ $out ]
 
-build site/0001-state-manipulation-vs-value-calculation-in-programming.html: $
-   md posts/0001-state-manipulation-vs-value-calculation-in-programming.md
+# parse posts Markdown
+build html/0001-state-manipulation-vs-value-calculation-in-programming.html: $
+  md posts/0001-state-manipulation-vs-value-calculation-in-programming.md
 
 rule pug
-  command = pug --out site --obj posts/0000-posts.js $in
+  command = pug --path templates/base.pug --obj posts/posts-meta.js < $in > $out
   description = [ $out ]
 
-build site/index.html: pug templates/index.pug | templates/base.pug $
-  posts/0000-posts.js
+# build home
+build site/index.html: pug templates/index.pug $
+  | templates/base.pug templates/mixins.pug posts/posts-meta.js
+
+# build categories
+build site/functional-programming.html: pug templates/functional-programming.pug $
+  | templates/base.pug templates/mixins.pug posts/posts-meta.js
+
+# build posts
+build site/state-manipulation-vs-value-calculation-in-programming.html: $
+  pug templates/post.pug | templates/base.pug $
+  html/0001-state-manipulation-vs-value-calculation-in-programming.html
 
 rule clean
-  command = rm -rf site
-  description = [ rm -rf site ]
+  command = rm -rf html site
+  description = [ rm -rf html site ]
 
 build clean: clean
 
-#default site/0001-state-manipulation-vs-value-calculation-in-programming.html
-default site/index.html
+default site/index.html site/functional-programming.html $
+  site/state-manipulation-vs-value-calculation-in-programming.html

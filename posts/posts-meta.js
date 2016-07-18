@@ -24,13 +24,12 @@ let buildURL = function(post) {
   return post;
 };
 
-let processPosts = R.pipe(R.sortBy(R.prop('date')), R.reverse,
-                          R.map(R.pipe(formatDate, buildURL)));
-
 let byTag = function(tag) {
   return function(post) { return R.contains(tag, post.tags); };
 };
 
-posts = processPosts(posts);
-exports.posts = posts;
+let processPosts = R.pipe(R.sortBy(R.prop('date')), R.reverse,
+                          R.map(R.pipe(formatDate, buildURL)));
+
+exports.posts = posts = processPosts(posts);
 exports.fpPosts = R.filter(byTag('Functional programming'))(posts);
