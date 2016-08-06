@@ -1,17 +1,14 @@
 let posts = [
   { title: 'State manipulation vs value calculation in programming',
     date: '2016-07-28',
-    tags: [ 'Functional programming' ]},
-  { title: 'State manipulation vs value calculation in programming',
-    date: '2016-07-29',
-    tags: [ 'Distributed systems' ] },
-  { title: 'State manipulation vs value calculation in programming',
-    date: '2016-07-30',
+    tags: [ 'Functional programming' ] },
+  { title: 'Statements vs expressions in programming',
+    date: '2016-08-06',
     tags: [ 'Functional programming' ] }
 ];
 
-let moment = require('moment');
-let R = require('ramda');
+const moment = require('moment');
+const R = require('ramda');
 
 let formatDate = function(post) {
   post.date = moment(post.date).format('D MMM, YYYY');
@@ -19,8 +16,8 @@ let formatDate = function(post) {
 };
 
 let buildURL = function(post) {
-  post.url = post.title.toLowerCase().replace(/[^a-zA-Z0-9 ]+/g, '').
-    replace(/ +/g, '-') + '.html';
+  post.url = post.title.toLowerCase().replace(/[^a-zA-Z0-9 ]+/g, '')
+    .trim().replace(/ +/g, '-') + '.html';
   return post;
 };
 

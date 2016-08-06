@@ -4,32 +4,35 @@ rule css
 
 build site/css/milligram.min.css: css node_modules/milligram/dist/milligram.min.css
 
-rule md
-  command = marked --output $out $in
+rule category
+  command = pug --path templates/base.pug --obj posts/posts.js < $in > $out
   description = [ $out ]
-
-# parse posts Markdown
-build html/0001-state-manipulation-vs-value-calculation-in-programming.html: $
-  md posts/0001-state-manipulation-vs-value-calculation-in-programming.md
-
-rule pug
-  command = pug --path templates/base.pug --obj posts/posts-meta.js < $in > $out
-  description = [ $out ]
-
-# build home
-build site/index.html: pug templates/index.pug $
-  | site/css/milligram.min.css templates/base.pug templates/mixins.pug $
-  posts/posts-meta.js
 
 # build categories
-build site/functional-programming.html: pug templates/functional-programming.pug $
-  | site/css/milligram.min.css templates/base.pug templates/mixins.pug $
-  posts/posts-meta.js
+category = index
+build site/$category.html: category templates/$category.pug | posts/posts.js $
+  templates/base.pug templates/mixins.pug site/css/milligram.min.css
+category = functional-programming
+build site/$category.html: category templates/$category.pug | posts/posts.js $
+  templates/base.pug templates/mixins.pug site/css/milligram.min.css
+
+rule md
+  command = marked < $in > $out
+  description = [ $out ]
+
+rule post
+  command = pug --path templates/base.pug --obj "{ post: '$post' }" < $in > $out
+  description = [ $out ]
 
 # build posts
-build site/state-manipulation-vs-value-calculation-in-programming.html: $
-  pug templates/post.pug | site/css/milligram.min.css templates/base.pug $
-  html/0001-state-manipulation-vs-value-calculation-in-programming.html
+post = state-manipulation-vs-value-calculation-in-programming
+build html/$post.html: md posts/$post.md
+build site/$post.html: post templates/post.pug | html/$post.html $
+  templates/base.pug templates/mixins.pug site/css/milligram.min.css
+post = statements-vs-expressions-in-programming
+build html/$post.html: md posts/$post.md
+build site/$post.html: post templates/post.pug | html/$post.html $
+  templates/base.pug templates/mixins.pug site/css/milligram.min.css
 
 rule clean
   command = rm -rf html site
@@ -37,5 +40,7 @@ rule clean
 
 build clean: clean
 
-default site/index.html site/functional-programming.html $
-  site/state-manipulation-vs-value-calculation-in-programming.html
+default site/index.html $
+  site/functional-programming.html $
+  site/state-manipulation-vs-value-calculation-in-programming.html $
+  site/statements-vs-expressions-in-programming.html
