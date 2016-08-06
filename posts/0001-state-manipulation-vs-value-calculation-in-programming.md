@@ -11,7 +11,7 @@ desired result.
 
 The machine instruction set and the language constructs are limited and
 finit. But the possibilities of programming are endless. The point is that there
-are many different methods to combine the instructions and language
+are many different methods to combine the instructions and the language
 constructs. The variety of programming methods results in different programming
 paradigms. The main programming paradigms are procedural programming,
 object-oriented programming and functional programming. The essential difference
@@ -30,7 +30,7 @@ end of the program execution all entities are drawn to the desired final state.
 
 The entity state is represented in the program as some objects in memory. In
 order to change the entity state it is necessary to change this objects in
-memory. This can be done be entity itself or by other entities in the
+memory. This can be done by entity itself or by other entities in the
 program. So the entity has **shared mutable state** that changes over time as
 program executes. The operation of state mutation in programming is called
 **assignment**. The assignment of a value to a variable updates the variable
@@ -63,7 +63,7 @@ calculate the final value from the initial one passing through intermediate
 value calculations. The program starts with the initial value and **applies
 expressions** in sequence to the initial and intermediate values in order to get
 the final result. The output of the previous expression is the input for the
-next expression and so on until the final result. So the whole program is the
+next expression and so on until the final result. So the whole program is a
 sequence of **value transformations**. At the end of the program execution the
 desired final value is calculated.
 
@@ -75,7 +75,7 @@ do not change over time. To differentiate the operation of one-time assignment
 without update from regular assignment with update the term **binding** is
 used. When binding a value to a variable the variable is called binding and not
 variable any more. The operation of binding binds a binding to a value and from
-now on the value of the binding cannot be changed. The notation of binding is
+now on the value of the binding cannot be changed. The notation of a binding is
 the same as the notation of assignment: `binding = value`. The point here is
 that the value of binding is guaranteed to be the same during the program
 execution which is not true for an assignment. Immutable values make it easier
@@ -94,14 +94,14 @@ bound to the final result of the composed expression and never changes in time.
 
 ## Conclusion
 
-Programming is the art of giving instruction to the machine.
+Programming is the art of giving instructions to the machine.
 
 Programming can be centered around state manipulation. In this case the program
 consist of a sequence of statements and assignments over shared mutable state
 that defines state transitions that leads to the final result.
 
-Programming can also be centered around value calculation. In this case the
-program is a composition of expressions and bindings over immutable values that
-defines value transformations that leads to the final result. The value
+Alternatively programming can be centered around value calculation. In this case
+the program is a composition of expressions and bindings over immutable values
+that defines value transformations that leads to the final result. The value
 calculation approach leads to more reliable code and is used in functional
 programming.
