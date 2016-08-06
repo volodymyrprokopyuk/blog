@@ -11,6 +11,7 @@
   "dependencies": {
     "moment": "2.x",
     "ramda": "0.x",
-    "milligram": "1.x"
+    "milligram": "1.x",
+    "uikit": "2.x"
   }
 }
