@@ -7,9 +7,31 @@ html
     meta(name="description" content="Distributed systems, functional programming and software testing with Elixir and JavaScript")
     meta(name="keywords" content="distributed systems, functional programming, software testing, Elixir, JavaScript")
     title Volodymyr Prokopyuk's Blog
-    link(href="css/style.min.css" rel="stylesheet")
+    link(href="css/base.min.css" rel="stylesheet")
+    link(href="css/prism.css" rel="stylesheet")
+    link(href="css/prism-coy.css" rel="stylesheet")
+    link(href="https://fonts.googleapis.com/css?family=Oswald:400" rel="stylesheet")
+    link(href="https://fonts.googleapis.com/css?family=Open+Sans:300,600" rel="stylesheet")
+    link(href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300" rel="stylesheet")
+    style.
+      html {
+        font-family: 'Open Sans', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Oswald', sans-serif;
+      }
+      p {
+        font-size: 22px;
+      }
+      strong {
+        font-weight: bold;
+      }
+      code, code[class*="language-"] {
+        font-family: 'Source Code Pro', monospace;
+        font-size: 20px;
+      }
   body
-    .container.uk-container.uk-container-center
+    .container
       header
         h1: a(href="index.html").
           Distributed systems, functional programming and software testing with
@@ -20,7 +42,11 @@ html
       nav
         ul
           li: a(href="functional-programming.html") Functional programming
+          li: a(href="functional-programming.html") Functional programming
       main
         block main
       footer
         p Disqus
+    script(src="js/prism.js")
+    script(src="js/prism-javascript.min.js")
+    script(src="js/prism-elixir.min.js")

@@ -2,8 +2,7 @@ rule css
   command = mkdir -p site/css && cp $in $out
 
 # build styles
-build site/css/style.min.css: css node_modules/milligram/dist/milligram.min.css
-#build site/css/style.min.css: css node_modules/uikit/dist/css/uikit.min.css
+build site/css/base.min.css: css node_modules/materialize-css/dist/css/materialize.min.css
 
 rule md
   command = marked < $in > $out
@@ -19,12 +18,12 @@ post = state-manipulation-vs-value-calculation-in-programming
 build posts/$post/post.html: md posts/$post/post.md
 build posts/$post/post.pug: post-pug posts/$post/post.html | templates/post.pug
 build site/$post.html: post posts/$post/post.pug | templates/base.pug $
-  site/css/style.min.css
+  site/css/base.min.css
 post = statements-vs-expressions-in-programming
 build posts/$post/post.html: md posts/$post/post.md
 build posts/$post/post.pug: post-pug posts/$post/post.html | templates/post.pug
 build site/$post.html: post posts/$post/post.pug | templates/base.pug $
-  site/css/style.min.css
+  site/css/base.min.css
 
 rule category
   command = pug --path templates/base.pug --obj posts/posts.js < $in > $out
@@ -32,10 +31,10 @@ rule category
 # build categories
 category = index
 build site/$category.html: category posts/$category.pug | posts/posts.js $
-  templates/base.pug templates/mixins.pug site/css/style.min.css
+  templates/base.pug templates/mixins.pug site/css/base.min.css
 category = functional-programming
 build site/$category.html: category posts/$category.pug | posts/posts.js $
-  templates/base.pug templates/mixins.pug site/css/style.min.css
+  templates/base.pug templates/mixins.pug site/css/base.min.css
 
 # clean posts, categories and site
 rule clean
