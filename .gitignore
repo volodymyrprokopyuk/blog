@@ -2,5 +2,4 @@
 .ninja_deps
 .ninja_log
 node_modules/
-html/
 site/

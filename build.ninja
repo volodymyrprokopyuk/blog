@@ -1,47 +1,45 @@
 rule css
   command = mkdir -p site/css && cp $in $out
-  description = [ $out ]
 
-style = milligram.min.css
-build site/css/$style: css node_modules/milligram/dist/$style
-style = uikit.min.css
-build site/css/$style: css node_modules/uikit/dist/css/$style
-
-styles = site/css/uikit.min.css
-
-rule category
-  command = pug --path templates/base.pug --obj posts/posts.js < $in > $out
-  description = [ $out ]
-
-# build categories
-category = index
-build site/$category.html: category templates/$category.pug | posts/posts.js $
-  templates/base.pug templates/mixins.pug $styles
-category = functional-programming
-build site/$category.html: category templates/$category.pug | posts/posts.js $
-  templates/base.pug templates/mixins.pug $styles
+# build styles
+build site/css/style.min.css: css node_modules/milligram/dist/milligram.min.css
+#build site/css/style.min.css: css node_modules/uikit/dist/css/uikit.min.css
 
 rule md
   command = marked < $in > $out
-  description = [ $out ]
+
+rule post-pug
+  command = sed -e 's|#{post}|$in|g' templates/post.pug > $out
 
 rule post
   command = pug --path templates/base.pug < $in > $out
-  description = [ $out ]
 
 # build posts
 post = state-manipulation-vs-value-calculation-in-programming
-build html/$post.html: md posts/$post.md
-build site/$post.html: post templates/post.pug | html/$post.html $
-  templates/base.pug templates/mixins.pug $styles
+build posts/$post/post.html: md posts/$post/post.md
+build posts/$post/post.pug: post-pug posts/$post/post.html | templates/post.pug
+build site/$post.html: post posts/$post/post.pug | templates/base.pug $
+  site/css/style.min.css
 post = statements-vs-expressions-in-programming
-build html/$post.html: md posts/$post.md
-build site/$post.html: post templates/post.pug | html/$post.html $
-  templates/base.pug templates/mixins.pug $styles
+build posts/$post/post.html: md posts/$post/post.md
+build posts/$post/post.pug: post-pug posts/$post/post.html | templates/post.pug
+build site/$post.html: post posts/$post/post.pug | templates/base.pug $
+  site/css/style.min.css
 
+rule category
+  command = pug --path templates/base.pug --obj posts/posts.js < $in > $out
+
+# build categories
+category = index
+build site/$category.html: category posts/$category.pug | posts/posts.js $
+  templates/base.pug templates/mixins.pug site/css/style.min.css
+category = functional-programming
+build site/$category.html: category posts/$category.pug | posts/posts.js $
+  templates/base.pug templates/mixins.pug site/css/style.min.css
+
+# clean posts, categories and site
 rule clean
-  command = rm -rf html site
-  description = [ rm -rf html site ]
+  command = rm -rf posts/*/post.html posts/*/post.pug site
 
 build clean: clean
 
