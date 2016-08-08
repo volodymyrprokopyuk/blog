@@ -58,18 +58,22 @@ posts = posts/posts.js
 category = index
 build site/$category.html: category posts/$category.pug | $posts $base $mixins $
   $styles $scripts
+category = about
+build site/$category.html: category posts/$category.pug | $posts $base $mixins $
+  $styles $scripts
 category = functional-programming
 build site/$category.html: category posts/$category.pug | $posts $base $mixins $
   $styles $scripts
 
 # clean posts, categories and site
 rule clean
-  command = rm -rf posts/*/post.html posts/*/post.pug site
+  command = rm -rf posts/*/post.html posts/*/post.pug site/*.html site/css $
+    site/js
 
 build clean: clean
 
 # build site
-default site/index.html $
+default site/index.html site/about.html $
   site/functional-programming.html $
   site/state-manipulation-vs-value-calculation-in-programming.html $
   site/statements-vs-expressions-in-programming.html
