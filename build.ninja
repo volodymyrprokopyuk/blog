@@ -1,40 +1,66 @@
 rule css
-  command = mkdir -p site/css && cp $in $out
+  command = mkdir -p site/css $
+    && cat node_modules/materialize-css/dist/css/materialize.min.css $
+    node_modules/prismjs/themes/prism.css $
+    node_modules/prismjs/themes/prism-coy.css $in > $out
 
 # build styles
-build site/css/base.min.css: css node_modules/materialize-css/dist/css/materialize.min.css
+build site/css/styles.css: css templates/style.css | $
+  node_modules/materialize-css/dist/css/materialize.min.css $
+  node_modules/prismjs/themes/prism.css $
+  node_modules/prismjs/themes/prism-coy.css
+
+styles = site/css/styles.css
+
+rule js
+  command = mkdir -p site/js $
+    && cat node_modules/prismjs/prism.js $
+    node_modules/prismjs/components/prism-javascript.min.js $
+    node_modules/prismjs/components/prism-elixir.min.js $in > $out
+
+# build scripts
+build site/js/scripts.js: js templates/script.js | $
+  node_modules/prismjs/prism.js $
+  node_modules/prismjs/components/prism-javascript.min.js $
+  node_modules/prismjs/components/prism-elixir.min.js
+
+scripts = site/js/scripts.js
 
 rule md
   command = marked < $in > $out
 
-rule post-pug
+rule post-temp
   command = sed -e 's|#{post}|$in|g' templates/post.pug > $out
 
 rule post
   command = pug --path templates/base.pug < $in > $out
 
+base = templates/base.pug
+mixins = templates/mixins.pug
+post-temp = templates/post.pug
+
 # build posts
 post = state-manipulation-vs-value-calculation-in-programming
 build posts/$post/post.html: md posts/$post/post.md
-build posts/$post/post.pug: post-pug posts/$post/post.html | templates/post.pug
-build site/$post.html: post posts/$post/post.pug | templates/base.pug $
-  site/css/base.min.css
+build posts/$post/post.pug: post-temp posts/$post/post.html | $post-temp
+build site/$post.html: post posts/$post/post.pug | $base $styles $scripts
 post = statements-vs-expressions-in-programming
 build posts/$post/post.html: md posts/$post/post.md
-build posts/$post/post.pug: post-pug posts/$post/post.html | templates/post.pug
-build site/$post.html: post posts/$post/post.pug | templates/base.pug $
-  site/css/base.min.css
+build posts/$post/post.pug: post-temp posts/$post/post.html | $post-temp
+build site/$post.html: post posts/$post/post.pug | $base $styles $scripts
 
 rule category
   command = pug --path templates/base.pug --obj posts/posts.js < $in > $out
 
+posts = posts/posts.js
+
 # build categories
 category = index
-build site/$category.html: category posts/$category.pug | posts/posts.js $
-  templates/base.pug templates/mixins.pug site/css/base.min.css
+build site/$category.html: category posts/$category.pug | $posts $base $mixins $
+  $styles $scripts
 category = functional-programming
-build site/$category.html: category posts/$category.pug | posts/posts.js $
-  templates/base.pug templates/mixins.pug site/css/base.min.css
+build site/$category.html: category posts/$category.pug | $posts $base $mixins $
+  $styles $scripts
 
 # clean posts, categories and site
 rule clean
@@ -42,6 +68,7 @@ rule clean
 
 build clean: clean
 
+# build site
 default site/index.html $
   site/functional-programming.html $
   site/state-manipulation-vs-value-calculation-in-programming.html $
