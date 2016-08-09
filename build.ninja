@@ -1,12 +1,12 @@
 rule css
   command = mkdir -p site/css $
-    && cat node_modules/materialize-css/dist/css/materialize.min.css $
+    && cat node_modules/normalize.css/normalize.css $
     node_modules/prismjs/themes/prism.css $
     node_modules/prismjs/themes/prism-coy.css $in > $out
 
 # build styles
 build site/css/styles.css: css templates/style.css | $
-  node_modules/materialize-css/dist/css/materialize.min.css $
+  node_modules/normalize.css/normalize.css $
   node_modules/prismjs/themes/prism.css $
   node_modules/prismjs/themes/prism-coy.css
 

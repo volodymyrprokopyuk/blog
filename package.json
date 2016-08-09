@@ -11,7 +11,7 @@
   "dependencies": {
     "moment": "2.x",
     "ramda": "0.x",
-    "materialize-css": "0.x",
+    "normalize.css": "4.x",
     "prismjs": "1.x"
   }
 }

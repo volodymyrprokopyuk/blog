@@ -1,20 +1,19 @@
-html {
+body {
   font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Oswald', sans-serif;
+  line-height: 140%;
 }
 
 p {
-  font-size: 22px;
-}
-
-strong {
-  font-weight: bold;
+  font-size: 120%;
+  line-height: 125%;
 }
 
 code, code[class*="language-"] {
   font-family: 'Source Code Pro', monospace;
-  font-size: 20px;
 }
