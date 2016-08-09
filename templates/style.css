@@ -7,6 +7,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Oswald', sans-serif;
   line-height: 140%;
+  color: #424242;
 }
 
 p {
@@ -14,6 +15,48 @@ p {
   line-height: 125%;
 }
 
+strong {
+  color: #212121;
+}
+
+a {
+  text-decoration: none;
+  color: #1e88e5;
+  color: #1976d2;
+  color: #1565c0;
+  color: #0d47a1;
+
+  color: #448aff;
+  color: #2979ff;
+  color: #2962ff;
+}
+
+a:hover {
+  color: #4a148c;
+  color: #7b1fa2;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  padding: 1em;
+  font-family: 'Oswald', sans-serif;
+  font-size: 120%;
+  font-weight: bold;
+}
+
 code, code[class*="language-"] {
   font-family: 'Source Code Pro', monospace;
+}
+
+.container {
+  position: relative;
+  max-width: 80.0rem;
+  width: 100%;
+  margin: 0 auto;
 }
