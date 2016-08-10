@@ -4,8 +4,8 @@ html
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0")
     meta(name="author" content="Volodymyr Prokopyuk <volodymyrprokopyuk@gmail.com>")
-    meta(name="description" content="Distributed systems, functional programming and software testing with Elixir and JavaScript")
-    meta(name="keywords" content="distributed systems, functional programming, software testing, Elixir, JavaScript")
+    meta(name="description" content="Volodymyr Prokopyuk's blog")
+    meta(name="keywords" content="software design, software quality, functional programming, software testing, Elixir, JavaScript")
     title Volodymyr Prokopyuk's Blog
     link(href="https://fonts.googleapis.com/css?family=Oswald:400" rel="stylesheet")
     link(href="https://fonts.googleapis.com/css?family=Open+Sans:300,600" rel="stylesheet")
@@ -14,16 +14,15 @@ html
   body
     .container
       header
-        h1: a(href="index.html").
-          Distributed systems, functional programming and software testing with
-          Elixir and JavaScript
-        p.
-          Become better Software Architect with deeper understanding of software
-          design principles and software quality techniques
+        .side: a(href="about.html") About
+        h1: a(href="index.html") Software Design and Software Quality
+        p.author Volodymyr Prokopyuk's blog
+        p.tagline.
+          Become a better Software Architect with deeper understanding of
+          Software Design principles and Software Quality techniques
       nav
         ul
           li: a(href="functional-programming.html") Functional programming
-          li: a(href="about.html") About
       main
         block main
       footer
