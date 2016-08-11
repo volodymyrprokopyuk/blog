@@ -15,7 +15,12 @@ p {
   line-height: 125%;
 }
 
+strong {
+  color: #212121;
+}
+
 a {
+  font-size: 120%;
   text-decoration: none;
   color: #2962ff;
 }
@@ -24,8 +29,9 @@ a:hover {
   color: #7b1fa2;
 }
 
-strong {
-  color: #212121;
+ul {
+  font-size: 120%;
+  line-height: 130%;
 }
 
 code, code[class*="language-"] {
@@ -68,13 +74,11 @@ nav ul {
 nav ul li {
   display: inline;
   font-family: 'Oswald', sans-serif;
-  font-size: 120%;
   font-weight: bold;
   padding-right: 1em;
 }
 
 .container {
-  position: relative;
   max-width: 70.0rem;
   margin: 0 auto;
   padding: 0.25em;
@@ -85,7 +89,7 @@ nav ul li {
 }
 
 .post ul {
-  font-size: 90%;
+  font-size: 100%;
   list-style-type: none;
   margin: 0;
   padding: 0;
