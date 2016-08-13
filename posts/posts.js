@@ -1,9 +1,9 @@
 let posts = [
+  { title: 'Statements vs expressions in programming',
+    date: '2016-08-14',
+    tags: [ 'Functional programming' ] },
   { title: 'State manipulation vs value calculation in programming',
     date: '2016-07-28',
-    tags: [ 'Functional programming' ] },
-  { title: 'Statements vs expressions in programming',
-    date: '2016-08-06',
     tags: [ 'Functional programming' ] }
 ];
 
