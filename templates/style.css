@@ -1,6 +1,17 @@
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  body {
+    font-size: 100%;
+  }
+}
+
+@media only screen and (min-device-width: 640px) {
+  body {
+    font-size: 120%;
+  }
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
-  font-size: 120%;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -43,7 +54,6 @@ header {
 
 header .side {
   font-family: 'Oswald', sans-serif;
-  font-size: 120%;
   font-weight: bold;
   text-align: right;
 }
@@ -63,7 +73,6 @@ header .tagline {
 
 nav {
   font-family: 'Oswald', sans-serif;
-  font-size: 120%;
   font-weight: bold;
   margin-bottom: 3em;
 }
