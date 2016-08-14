@@ -1,0 +1,11 @@
+var disqus_config = function () {
+  var post = '#{post}'.replace(/^posts\//, '');
+  this.page.url = `http://volodymyrprokopyuk.github.io/blog/${post}.html`;
+  this.page.identifier = post;
+};
+(function() {
+  var script = document.createElement('script');
+  script.src = '//volodymyrprokopyuk.disqus.com/embed.js';
+  script.setAttribute('data-timestamp', +new Date());
+  (document.head || document.body).appendChild(script);
+})();

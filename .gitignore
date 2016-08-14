@@ -3,4 +3,5 @@
 .ninja_log
 node_modules/
 posts/*/post.html
+posts/*/disqus.js
 posts/*/post.pug

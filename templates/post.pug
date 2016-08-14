@@ -1,4 +1,8 @@
 extends base
 
 block main
-  include ../#{post}
+  include ../#{post}/post.html
+  footer
+    #disqus_thread
+  script
+    include ../#{post}/disqus.js

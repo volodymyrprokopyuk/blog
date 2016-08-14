@@ -29,7 +29,10 @@ scripts = site/js/scripts.js
 rule md
   command = marked < $in > $out
 
-rule post-temp
+rule disqus
+  command = sed -e 's|#{post}|$in|g' templates/disqus.pug > $out
+
+rule template
   command = sed -e 's|#{post}|$in|g' templates/post.pug > $out
 
 rule post
@@ -37,17 +40,24 @@ rule post
 
 base = templates/base.pug
 mixins = templates/mixins.pug
-post-temp = templates/post.pug
+disqus = templates/disqus.pug
+template = templates/post.pug
 
 # build posts
 post = state-manipulation-vs-value-calculation-in-programming
 build posts/$post/post.html: md posts/$post/post.md
-build posts/$post/post.pug: post-temp posts/$post/post.html | $post-temp
-build site/$post.html: post posts/$post/post.pug | $base $styles $scripts
+build posts/$post/disqus.js: disqus posts/$post | $disqus
+build posts/$post/post.pug: template posts/$post | $template
+build site/$post.html: post posts/$post/post.pug | $base $styles $scripts $
+  posts/$post/post.html posts/$post/disqus.js
+default site/$post.html
 post = statements-vs-expressions-in-programming
 build posts/$post/post.html: md posts/$post/post.md
-build posts/$post/post.pug: post-temp posts/$post/post.html | $post-temp
-build site/$post.html: post posts/$post/post.pug | $base $styles $scripts
+build posts/$post/disqus.js: disqus posts/$post | $disqus
+build posts/$post/post.pug: template posts/$post | $template
+build site/$post.html: post posts/$post/post.pug | $base $styles $scripts $
+  posts/$post/post.html posts/$post/disqus.js
+default site/$post.html
 
 rule category
   command = pug --path templates/base.pug --obj posts/posts.js < $in > $out
@@ -58,22 +68,19 @@ posts = posts/posts.js
 category = index
 build site/$category.html: category posts/$category.pug | $posts $base $mixins $
   $styles $scripts
+default site/$category.html
 category = about
 build site/$category.html: category posts/$category.pug | $posts $base $mixins $
   $styles $scripts
+default site/$category.html
 category = functional-programming
 build site/$category.html: category posts/$category.pug | $posts $base $mixins $
   $styles $scripts
+default site/$category.html
 
 # clean posts, categories and site
 rule clean
-  command = rm -rf posts/*/post.html posts/*/post.pug site/*.html site/css $
-    site/js
+  command = rm -rf posts/*/post.html posts/*/disqus.js posts/*/post.pug $
+    site/*.html site/css site/js
 
 build clean: clean
-
-# build site
-default site/index.html site/about.html $
-  site/functional-programming.html $
-  site/state-manipulation-vs-value-calculation-in-programming.html $
-  site/statements-vs-expressions-in-programming.html
