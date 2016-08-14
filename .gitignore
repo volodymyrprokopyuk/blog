@@ -2,8 +2,5 @@
 .ninja_deps
 .ninja_log
 node_modules/
-posts/*/post.pug
 posts/*/post.html
-site/*.html
-site/css/
-site/js/
+posts/*/post.pug

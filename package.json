@@ -7,7 +7,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/volodymyrprokopyuk/blog.git"
-  }, "licence": "MIT",
+  }, "license": "MIT",
   "dependencies": {
     "moment": "2.x",
     "ramda": "0.x",
