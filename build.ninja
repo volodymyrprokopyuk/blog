@@ -78,6 +78,12 @@ build site/$category.html: category posts/$category.pug | $posts $base $mixins $
   $styles $scripts
 default site/$category.html
 
+rule publish
+  command = git subtree push --prefix site origin gh-pages
+
+# publish site
+build publish: publish
+
 # clean posts, categories and site
 rule clean
   command = rm -rf posts/*/post.html posts/*/disqus.js posts/*/post.pug $
