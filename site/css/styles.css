@@ -886,6 +886,7 @@ nav ul li {
   max-width: 70.0rem;
   margin: 0 auto;
   padding: 0.25em;
+  padding-bottom: 3em;
 }
 
 .post h3 {
