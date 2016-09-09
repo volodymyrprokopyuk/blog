@@ -58,6 +58,13 @@ build posts/$post/post.pug: template posts/$post | $template
 build site/$post.html: post posts/$post/post.pug | $base $styles $scripts $
   posts/$post/post.html posts/$post/disqus.js
 default site/$post.html
+post = imperative-vs-declarative-style-of-programming
+build posts/$post/post.html: md posts/$post/post.md
+build posts/$post/disqus.js: disqus posts/$post | $disqus
+build posts/$post/post.pug: template posts/$post | $template
+build site/$post.html: post posts/$post/post.pug | $base $styles $scripts $
+  posts/$post/post.html posts/$post/disqus.js
+default site/$post.html
 
 rule category
   command = pug --path templates/base.pug --obj posts/posts.js < $in > $out
