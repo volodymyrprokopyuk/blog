@@ -16,7 +16,8 @@ rule js
   command = mkdir -p site/js $
     && cat node_modules/prismjs/prism.js $
     node_modules/prismjs/components/prism-javascript.min.js $
-    node_modules/prismjs/components/prism-elixir.min.js $in > $out
+    node_modules/prismjs/components/prism-elixir.min.js $
+    node_modules/prismjs/components/prism-sql.min.js $in > $out
 
 # build scripts
 build site/js/scripts.js: js templates/script.js | $
