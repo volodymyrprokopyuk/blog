@@ -903,6 +903,7 @@ nav ul li {
 .post ul li {
   display: inline;
   padding-right: 0.75em;
+  font-size: 90%;
 }
 
 .about img {

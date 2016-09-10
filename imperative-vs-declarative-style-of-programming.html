@@ -1,30 +1,38 @@
 <!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="author" content="Volodymyr Prokopyuk &lt;volodymyrprokopyuk@gmail.com&gt;"><meta name="description" content="Volodymyr Prokopyuk's blog"><meta name="keywords" content="software design, software quality, functional programming, software testing, Elixir, JavaScript"><title>Volodymyr Prokopyuk's Blog</title><link href="https://fonts.googleapis.com/css?family=Oswald:400" rel="stylesheet"><link href="https://fonts.googleapis.com/css?family=Open+Sans:300,600" rel="stylesheet"><link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300" rel="stylesheet"><link href="css/styles.css" rel="stylesheet"></head><body><div class="container"><header><div class="side"><a href="about.html">About</a></div><h1><a href="index.html">Software Design and Software Quality</a></h1><p class="author">Volodymyr Prokopyuk's blog</p><p class="tagline">Become a better Software Architect with deeper understanding of
 Software Design principles and Software Quality techniques</p></header><nav><ul><li><a href="functional-programming.html">Functional programming</a></li></ul></nav><main><h1 id="imperative-vs-declarative-style-of-programming">Imperative vs declarative style of programming</h1>
-<p>TODO</p>
+<p>Imperative style of programming is concerned about how to calculate the final
+result. Declarative style of programming is concerned about what the final
+result is. Imperative style of programming is more flexible and more error
+prone. Declarative style of programming is less flexible and more reliable. The
+comparison between imperative and declarative style of programming is given
+below.</p>
 <h2 id="imperative-style-of-programming">Imperative style of programming</h2>
 <p>Imperative style of programming is a basic method of programming. The
-programming began with imperative style using the assembler as programming
-language. Imperative style of programming is older then decalrative style of
+programming began with imperative style using the assembler programming
+language. Imperative style of programming is older than declarative style of
 programming. Imperative style of programming implies the <strong>detailed step by step
 instructions</strong> to the machine about how to carry out the calculations to get the
 final result.</p>
-<p>The instructions used in imperative style of programming are a <strong>low-level
+<p>The instructions used in imperative style of programming are <strong>low-level
 instructions</strong>. The imperative style instruction set is very close to the
-machine instruction set. The imperative style instruciton set comprises
+machine instruction set. The imperative style instruction set comprises
 assignment, conditional and looping instructions that are common in all
 programming languages. Imperative style of programming requires <strong>explicit
-definition of higher level abstractions</strong> in program construction. All
-program building blocks have to be explicitly defined using low-level
-imperative instructions.</p>
-<p>Imperative style of programming approches the problem solution from the
+definition of high-level abstractions</strong> in program construction. All program
+building blocks have to be explicitly defined using low-level imperative
+instructions.</p>
+<p>Imperative style of programming approaches the problem solution from the
 perspective of <strong>do yourself heavy work</strong>. Imperative style of programming
-provides only basic low-level instrucitons and gives total freedom about
-what and how high-level program abstraction can be constucted. To construct
-high-level abstractions it is necessary to define how exactly each and every
-abstaction have to be implemented. Imperative style of programming operates in
-low-level terms of <strong>how</strong>. Low-level instruction set provided by imperative
-style of programming allows for great fexibility and freedom. The cost of this
-flexibility and freedom are larger more verbose and more arror prone code.</p>
+provides only basic low-level instructions and gives total freedom and
+flexibility about what and how high-level program abstractions can be
+constructed. To construct high-level abstractions it is necessary to define how
+exactly each and every abstraction have to be implemented. Imperative style of
+programming operates in low-level terms of <strong>how</strong>. Low-level instruction set
+provided by imperative style of programming allows for <strong>greater flexibility and
+freedom</strong> compared with declarative style of programming. The cost of this
+flexibility and freedom are larger, more verbose and more error prone
+code. Imperative style of programming is used in <strong>general purpose programming
+languages</strong>.</p>
 <p>An example of imperative style of programming is a for loop:</p>
 <pre><code class="lang-javascript">let arr = [];
 for (let count = 0; count &lt;= 5; ++count) {
@@ -34,55 +42,54 @@ for (let count = 0; count &lt;= 5; ++count) {
 </code></pre>
 <p>In order to get the final result it is necessary to control how the <code>count</code>
 variable is initialized, how the <code>count</code> variable is modified and what is the
-loop exit condition. The imperative programming aproch is more verbose and more
-error prone.</p>
-<p>An exmaple of declarative style of programming equivalent to the imperative for
+loop exit condition. The imperative programming approach is more verbose and
+more error prone.</p>
+<p>An example of declarative style of programming equivalent to the imperative for
 loop:</p>
 <pre><code class="lang-elixir">l = 0..5 |&gt; Enum.map(&amp;(&amp;1 * 10))
 # l =&gt; [0, 10, 20, 30, 40, 50]
 </code></pre>
-<p>The final result is desribed in terms of high-level operations (range and
+<p>The final result is desired in terms of high-level operations (range and
 map). Declarative style of programming produces more reliable, less error prone
 code that is easier to read, understand and reason about.</p>
 <h2 id="declarative-style-of-programming">Declarative style of programming</h2>
 <p>Declarative style of programming is a high-level method of programming.
 Declarative style of programming is the evolution of imperative style of
-programming. Declarative style of programming is younger then imperative
-style of programming. The evolution of declarative style of programing means
-leaving low-level programming concerns to the runtime and going towards
-<strong>high-level problem concerns</strong>. Declarative style of progarmming is all
-about <strong>defining conditions that final result should satisfy</strong>. Declarative
-style of programming leaves all implementation details to the environment or
-the runtime to deal with.</p>
-<p>Declarative style of programming provides high-lever abstactions to construct
+programming. Declarative style of programming is younger than imperative style
+of programming. The evolution of declarative style of programing means leaving
+low-level programming concerns to the runtime and going towards <strong>high-level
+problem concerns</strong>. Declarative style of programming is all about <strong>defining
+conditions that final result should satisfy</strong>. Declarative style of programming
+leaves all implementation details to the the runtime to deal with.</p>
+<p>Declarative style of programming provides high-level abstractions to construct
 program with. Declarative programming consists in <strong>implicit use of high-level
-abstactions</strong> provided by the runtime. The high-level abstractions allows to
-define the conditions that the final result should satisfy. The declarative
-style program is a compisition of high level abstractions that describe <strong>what</strong>
-the final result is but not how to caclulate the final result. Given the
-declarative style program the runtime is capable of constructing and executing
-the necessary operations to calculate the final result. The final result
-derivation from the declarative result description is an automatic process done
-by the runtime. No explicit detailed step by step instructions are
-needed. Define final result conditions in terms of high-level abstractions and
-<strong>let the runtime to solve the problem</strong>.</p>
-<p>The high-level abstractions provided by declartive programming are less fexible
-and more reliable than low-level instructions provided by imperative
-programming.  By providing high-level abstractions declarative programming
-limits the capabilities and the flexibility of a program compared to an
-imperative probram constructed with low-level instructions. Declarative
-programming provide more reliable and dedicated environment designed to solve
-a specific types of problems easily and efficiently. The declarative
-programming languages designed to solve a specific types of programs are called
-<strong>DSL</strong>s (Domain Spacific Languages). DSLs are an example of declarative style
-of programming.</p>
+abstractions</strong> provided by the runtime. The high-level abstractions allow define
+the conditions that the final result should satisfy. The declarative style
+program is a composition of high-level abstractions that describe <strong>what</strong> the
+final result is but not how to calculate the final result. Given the declarative
+style program the runtime is capable of constructing and executing the necessary
+operations to calculate the final result. The final result derivation from the
+declarative result description is an automatic process done by the runtime. No
+explicit detailed step by step instructions are needed. Define final result
+conditions in terms of high-level abstractions and <strong>let the runtime to solve
+the problem</strong>.</p>
+<p>The high-level abstractions provided by declarative programming are <strong>less
+flexible and more reliable</strong> than low-level instructions provided by imperative
+programming. By providing high-level abstractions declarative programming limits
+the capabilities and the flexibility of a program compared to an imperative
+program constructed with low-level instructions. Declarative programming
+provides more reliable and dedicated environment designed to <strong>solve a specific
+types of problems</strong> easily and efficiently. The declarative programming
+languages designed to solve a specific types of problems are called <strong>DSL</strong>s
+(Domain Specific Languages). DSLs are an example of declarative style of
+programming.</p>
 <p><strong>Regular expressions</strong> is a DSL for efficient string manipulation (searching,
 extraction and replacing):</p>
 <pre><code class="lang-javascript">const phonePage =
   `Volodymyr 123456789
    Svitlana 987654321`;
-let phoneBook = [];
-let r = /(\w+)\s+(\d+)/g;
+const phoneBook = [];
+const r = /(\w+)\s+(\d+)/g; // regular expression
 let m = null;
 while((m = r.exec(phonePage)) !== null) {
   phoneBook.push({name: m[1], phone: m[2]});
@@ -91,14 +98,14 @@ while((m = r.exec(phonePage)) !== null) {
 //   [{name: &#39;Volodymyr&#39;, phone: &#39;123456789&#39;},
 //    {name: &#39;Svitlana&#39;, phone: &#39;987654321&#39;}]
 </code></pre>
-<p>The regular expression <code>/(\w+)\s+(\d+)/g</code> describes using hight level
+<p>The regular expression <code>/(\w+)\s+(\d+)/g</code> describes using high-level
 abstractions (words, spaces and digits) what the result should be and not how to
-caclulate it. Given the high-level abstract description of the desired result
-the regular expressions engine performs necessary operation to parse and extract
-the information. No explicit low-level instructions are involved in the process
-only implicit high-level abstractions.</p>
-<p><strong>SQL</strong> is a DSL for efficient relational data manipulation (inserting, updating,
-retrieving and deleting):</p>
+calculate the result. Given the high-level abstract description of the desired
+result the regular expressions engine performs necessary operation to parse and
+extract the information. No explicit low-level instructions are involved in the
+process only implicit high-level abstractions.</p>
+<p><strong>SQL</strong> is a DSL for efficient relational data manipulation (inserting,
+updating, retrieving and deleting):</p>
 <pre><code class="lang-sql">select o.order_id, p.product_id, p.name, p.price, o.quantity
 from Orders o
   join Products p on p.product_id = o.product_id
@@ -106,9 +113,10 @@ where o.order_id = 1234;
 </code></pre>
 <p>SQL query describes in terms of high-level abstractions (relations,
 intersections, projections and predicates) what conditions the retrieved
-information should satisfy. All the necessary implementation details to retrieve
-the desired information are handled by SQL engine.</p>
-<p><strong>HTML</strong> is a DSL for efficient information representation in Internet:</p>
+information should satisfy. All the necessary implementation details about how
+to retrieve the desired information are handled by the SQL engine.</p>
+<p><strong>HTML</strong> is a DSL for efficient information structuring and presentation in
+Internet (headers, paragraphs, lists, quotes, links):</p>
 <pre><code class="lang-html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;head&gt;
@@ -116,15 +124,30 @@ the desired information are handled by SQL engine.</p>
     &lt;title&gt;Volodymyr Prokopyuk&#39;s Blog&lt;/title&gt;
   &lt;/head&gt;
   &lt;body&gt;
-    &lt;h1&gt;Title&lt;/h1&gt;
-    &lt;p&gt;Content&lt;/p&gt;
+    &lt;h1&gt;Post title&lt;/h1&gt;
+    &lt;p&gt;Post content&lt;/p&gt;
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
 <p>The HTML markup defines in terms of high-level operations (title, headers and
 paragraphs) what the final page is. The browser rendering engine performs all
-necessary operations to display the page as described by HTML.</p>
+the necessary operations to display the page as described by HTML.</p>
 <h2 id="conclusion">Conclusion</h2>
+<p>Imperative style of programming implies detailed step by step low-level
+instructions about how to calculate the final result. In order to construct a
+program the high-level abstractions have to be defined explicitly. Imperative
+style approach is do yourself heavy work. Imperative style of programming
+operates in terms of how, not what. Imperative style of programming allows for
+greater flexibility, is more verbose and error prone. Imperative style of
+programming is used in general purpose programming languages.</p>
+<p>Declarative style of programming provides high-level abstractions to construct a
+program with. Declarative style of programming allows to concentrate on
+high-level problem concerns by defining the conditions that the final result
+should satisfy. Declarative style of programming operates in terms of what, not
+how. Define the conditions that the final result should satisfy and let the
+runtime to solve the problem. Declarative style is less flexible and more
+reliable. Declarative style of programming is used in DSLs (Regular expressions,
+SQL, HTML).</p>
 
 <footer><div id="disqus_thread"></div></footer><script>var disqus_config = function () {
   var post = 'posts/imperative-vs-declarative-style-of-programming'.replace(/^posts\//, '');
